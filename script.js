@@ -1,5 +1,5 @@
 let currentStep = 1;
-const scriptURL = 'URL_WEB_APP_ANDA'; 
+const scriptURL = 'https://rifqia48.github.io/typeform/'; 
 
 function nextStep(step) {
     const container = document.getElementById(`step-${step}`);
