@@ -1,93 +1,139 @@
+:root {
+    --primary: #007bff;
+    --bg: #f8f9fa;
+    --text: #333;
+}
+
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 #form-container {
-    width: 80%;
-    max-width: 600px;
-    text-align: left;
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+#progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    background: var(--primary);
+    width: 0%;
+    transition: 0.4s ease;
 }
 
 .step {
-    display: none; /* Sembunyikan semua step di awal */
-    animation: slideUp 0.5s ease-out;
+    display: none;
+    animation: fadeIn 0.5s ease;
 }
 
 .step.active {
     display: block;
 }
 
-h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-input {
-    width: 100%;
-    border: none;
-    border-bottom: 2px solid #007bff;
-    background: transparent;
-    font-size: 1.5rem;
-    padding: 10px 0;
-    outline: none;
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.table-container {
-    background: white;
+.step-number {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h1 { font-size: 1.8rem; margin: 10px 0; }
+h2 { font-size: 1.2rem; line-height: 1.5; margin-bottom: 20px; }
+
+.context { color: var(--primary); font-weight: 600; margin-bottom: 5px; }
+.instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+
+/* Input Text */
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 15px 0;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    font-size: 1.3rem;
+    outline: none;
+    transition: 0.3s;
+    margin-bottom: 30px;
+    background: transparent;
+}
+
+input[type="text"]:focus {
+    border-bottom-color: var(--primary);
+}
+
+/* Radio Options */
+.options { margin-bottom: 30px; }
+.radio-opt {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #eee;
     padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.radio-opt:hover { background: #f0f7ff; border-color: var(--primary); }
+.radio-opt input { margin-right: 15px; transform: scale(1.2); }
+
+/* Table Style */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #eee;
     border-radius: 10px;
-    margin-bottom: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
-}
-
-.radio-opt {
-    display: block;
     background: white;
+}
+
+th, td { padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+td:first-child { text-align: left; width: 50%; font-weight: 500; }
+
+/* Buttons */
+button {
+    width: 100%;
     padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.radio-opt:hover {
-    background: #e7f3ff;
-}
+.btn-next { background: var(--primary); color: white; }
+.btn-next:hover { background: #0056b3; }
+
+.btn-submit { background: #28a745; color: white; }
+.btn-submit:hover { background: #218838; }
+
+/* Success Page */
+#success-msg { text-align: center; padding: 20px 0; }
+.icon-success { font-size: 4rem; margin-bottom: 20px; }

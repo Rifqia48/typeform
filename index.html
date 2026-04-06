@@ -16,44 +16,60 @@
             </div>
 
             <div class="step" id="step-2">
-                <h1>Sejauh mana kamu paham materi hari ini?</h1>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Pernyataan</th>
-                            <th>🤩 Paham</th>
-                            <th>🤔 Bingung</th>
-                        </tr>
-                        <tr>
-                            <td>Menentukan arah tren grafik</td>
-                            <td><input type="radio" name="paham_tren" value="Sangat Paham" required></td>
-                            <td><input type="radio" name="paham_tren" value="Bingung"></td>
-                        </tr>
-                        <tr>
-                            <td>Menarik garis tren digital</td>
-                            <td><input type="radio" name="paham_garis" value="Sangat Paham" required></td>
-                            <td><input type="radio" name="paham_garis" value="Bingung"></td>
-                        </tr>
-                    </table>
-                </div>
-                <button type="button" onclick="nextStep(2)">Lanjut ke Soal</button>
+                <p>Soal 1</p>
+                <h2>Grafik menurun dari kiri atas ke kanan bawah. Arah trennya adalah...</h2>
+                <label class="radio-opt"><input type="radio" name="soal1" value="A" required> A. Linear Positif</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="B"> B. Linear Negatif</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="C"> C. Tidak ada korelasi</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="D"> D. Non-linear</label>
+                <button type="button" onclick="nextStep(2)">Berikutnya</button>
             </div>
 
             <div class="step" id="step-3">
-                <p>Soal 1</p>
-                <h2>Grafik menurun dari kiri atas ke kanan bawah. Arah trennya adalah...</h2>
-                <label class="radio-opt"><input type="radio" name="soal1" value="A" required> A. Linear Positif</label><br>
-                <label class="radio-opt"><input type="radio" name="soal1" value="B"> B. Linear Negatif</label><br>
-                <label class="radio-opt"><input type="radio" name="soal1" value="C"> C. Tidak ada korelasi</label><br>
+                <p>Soal 2</p>
+                <h2>Tujuan utama menarik "Garis Tren" adalah untuk...</h2>
+                <label class="radio-opt"><input type="radio" name="soal2" value="A" required> A. Membuat titik terlihat rapi</label>
+                <label class="radio-opt"><input type="radio" name="soal2" value="B"> B. Menghubungkan titik awal & akhir</label>
+                <label class="radio-opt"><input type="radio" name="soal2" value="C"> C. Memprediksi nilai yang belum terjadi</label>
+                <label class="radio-opt"><input type="radio" name="soal2" value="D"> D. Menghitung total data</label>
                 <button type="button" onclick="nextStep(3)">Berikutnya</button>
             </div>
 
             <div class="step" id="step-4">
-                <p>Soal Terakhir</p>
+                <p>Soal 3</p>
                 <h2>Jika titik menyebar acak dan berantakan, apa kesimpulannya?</h2>
                 <input type="text" name="soal3" placeholder="Jawaban singkatmu..." required>
-                <button type="submit">Kirim Jawaban</button>
+                <button type="submit" id="submit-btn">Kirim Jawaban</button>
             </div>
+
+            <div class="step" id="step-5">
+    <p>Refleksi Diri</p>
+    <h2>Apa yang kamu rasakan setelah mempelajari materi ini?</h2>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Pernyataan</th>
+                <th>🤩 Paham</th>
+                <th>🤔 Bingung</th>
+            </tr>
+            <tr>
+                <td>Menentukan arah tren grafik diagram pencar</td>
+                <td><input type="radio" name="refleksi1" value="Paham" required></td>
+                <td><input type="radio" name="refleksi1" value="Bingung"></td>
+            </tr>
+            <tr>
+                <td>Menggambar garis tren secara digital</td>
+                <td><input type="radio" name="refleksi2" value="Paham" required></td>
+                <td><input type="radio" name="refleksi2" value="Bingung"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <h2>Hal yang paling menantang bagi saya adalah...</h2>
+    <input type="text" name="tantangan" placeholder="Jawabanmu..." required>
+    
+    <button type="submit" id="submit-btn">Kirim Jawaban Akhir</button>
+</div>
         </form>
 
         <div id="success-msg" style="display:none;">
