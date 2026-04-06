@@ -1,5 +1,5 @@
 let currentStep = 1;
-const scriptURL = 'https://rifqia48.github.io/typeform/'; 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx6pr1XttbutHLYwBOsF83Qe2o2qG1qbPwX81t2M2SVd10UFFPBZE-kkAro3BgaqujI/exec'; 
 
 function nextStep(step) {
     const container = document.getElementById(`step-${step}`);
