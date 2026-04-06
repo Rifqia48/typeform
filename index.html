@@ -7,76 +7,145 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="form-container">
+        <div id="progress-bar"></div>
+
         <form id="student-form">
             <div class="step active" id="step-1">
+                <span class="step-number">Bagian 1/5</span>
                 <h1>Halo! Tulis namamu dulu ya.</h1>
-                <input type="text" name="nama" placeholder="Nama Lengkap" required>
-                <button type="button" onclick="nextStep(1)">Mulai Kuis</button>
+                <p class="instruction">Gunakan nama lengkap sesuai absen.</p>
+                <input type="text" name="nama" placeholder="Ketik namamu di sini..." required>
+                <button type="button" class="btn-next" onclick="nextStep(1)">Mulai Kuis</button>
             </div>
 
             <div class="step" id="step-2">
-                <p>Soal 1</p>
-                <h2>Grafik menurun dari kiri atas ke kanan bawah. Arah trennya adalah...</h2>
-                <label class="radio-opt"><input type="radio" name="soal1" value="A" required> A. Linear Positif</label>
-                <label class="radio-opt"><input type="radio" name="soal1" value="B"> B. Linear Negatif</label>
-                <label class="radio-opt"><input type="radio" name="soal1" value="C"> C. Tidak ada korelasi</label>
-                <label class="radio-opt"><input type="radio" name="soal1" value="D"> D. Non-linear</label>
-                <button type="button" onclick="nextStep(2)">Berikutnya</button>
+                <span class="step-number">Bagian 2/5</span>
+                <p class="context">Soal 1: Tren Data</p>
+                <h2>Grafik menurun dari kiri atas ke kanan bawah. Arah tren data tersebut adalah...</h2>
+                <div class="options">
+                    <label class="radio-opt"><input type="radio" name="soal1" value="A" required> <span>A. Linear Positif</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal1" value="B"> <span>B. Linear Negatif</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal1" value="C"> <span>C. Tidak ada korelasi</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal1" value="D"> <span>D. Non-linear</span></label>
+                </div>
+                <button type="button" class="btn-next" onclick="nextStep(2)">Lanjut</button>
             </div>
 
             <div class="step" id="step-3">
-                <p>Soal 2</p>
-                <h2>Tujuan utama menarik "Garis Tren" adalah untuk...</h2>
-                <label class="radio-opt"><input type="radio" name="soal2" value="A" required> A. Membuat titik terlihat rapi</label>
-                <label class="radio-opt"><input type="radio" name="soal2" value="B"> B. Menghubungkan titik awal & akhir</label>
-                <label class="radio-opt"><input type="radio" name="soal2" value="C"> C. Memprediksi nilai yang belum terjadi</label>
-                <label class="radio-opt"><input type="radio" name="soal2" value="D"> D. Menghitung total data</label>
-                <button type="button" onclick="nextStep(3)">Berikutnya</button>
+                <span class="step-number">Bagian 3/5</span>
+                <p class="context">Soal 2: Garis Tren</p>
+                <h2>Tujuan utama menarik "Garis Tren" lurus pada diagram pencar adalah untuk...</h2>
+                <div class="options">
+                    <label class="radio-opt"><input type="radio" name="soal2" value="A" required> <span>A. Membuat titik terlihat rapi</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal2" value="B"> <span>B. Menghubungkan titik awal & akhir</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal2" value="C"> <span>C. Memprediksi nilai yang belum terjadi</span></label>
+                    <label class="radio-opt"><input type="radio" name="soal2" value="D"> <span>D. Menghitung total data</span></label>
+                </div>
+                <button type="button" class="btn-next" onclick="nextStep(3)">Lanjut</button>
             </div>
 
             <div class="step" id="step-4">
-                <p>Soal 3</p>
-                <h2>Jika titik menyebar acak dan berantakan, apa kesimpulannya?</h2>
-                <input type="text" name="soal3" placeholder="Jawaban singkatmu..." required>
-                <button type="submit" id="submit-btn">Kirim Jawaban</button>
+                <span class="step-number">Bagian 4/5</span>
+                <p class="context">Soal 3: Isian Singkat</p>
+                <h2>Jika titik menyebar acak dan berantakan tanpa membentuk garis, apa kesimpulanmu?</h2>
+                <input type="text" name="soal3" placeholder="Ketik jawabanmu..." required>
+                <button type="button" class="btn-next" onclick="nextStep(4)">Lanjut ke Refleksi</button>
             </div>
 
             <div class="step" id="step-5">
-    <p>Refleksi Diri</p>
-    <h2>Apa yang kamu rasakan setelah mempelajari materi ini?</h2>
-    <div class="table-container">
-        <table>
-            <tr>
-                <th>Pernyataan</th>
-                <th>🤩 Paham</th>
-                <th>🤔 Bingung</th>
-            </tr>
-            <tr>
-                <td>Menentukan arah tren grafik diagram pencar</td>
-                <td><input type="radio" name="refleksi1" value="Paham" required></td>
-                <td><input type="radio" name="refleksi1" value="Bingung"></td>
-            </tr>
-            <tr>
-                <td>Menggambar garis tren secara digital</td>
-                <td><input type="radio" name="refleksi2" value="Paham" required></td>
-                <td><input type="radio" name="refleksi2" value="Bingung"></td>
-            </tr>
-        </table>
-    </div>
-    
-    <h2>Hal yang paling menantang bagi saya adalah...</h2>
-    <input type="text" name="tantangan" placeholder="Jawabanmu..." required>
-    
-    <button type="submit" id="submit-btn">Kirim Jawaban Akhir</button>
-</div>
+                <span class="step-number">Bagian 5/5</span>
+                <h1>Refleksi Pembelajaran</h1>
+                <p class="instruction">Sejauh mana kamu paham materi hari ini?</p>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pernyataan</th>
+                                <th>🤩 Paham</th>
+                                <th>🤔 Bingung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Menentukan arah tren grafik</td>
+                                <td><input type="radio" name="refleksi1" value="Paham" required></td>
+                                <td><input type="radio" name="refleksi1" value="Bingung"></td>
+                            </tr>
+                            <tr>
+                                <td>Menggambar garis tren digital</td>
+                                <td><input type="radio" name="refleksi2" value="Paham" required></td>
+                                <td><input type="radio" name="refleksi2" value="Bingung"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Hal yang paling menantang bagi saya adalah...</h2>
+                <input type="text" name="tantangan" placeholder="Ceritakan kesulitanmu..." required>
+                
+                <button type="submit" id="submit-btn" class="btn-submit">Kirim Semua Jawaban</button>
+            </div>
         </form>
 
         <div id="success-msg" style="display:none;">
-            <h1>Selesai! 🎉</h1>
-            <p>Jawabanmu sudah tercatat di Spreadsheet Guru.</p>
+            <div class="icon-success">🎉</div>
+            <h1>Terima Kasih!</h1>
+            <p>Jawabanmu sudah berhasil terkirim ke Bapak/Ibu Guru.</p>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzzDDMd6MQBhanvNISIw1elLXOyngTT8NKjSTxJFtEEFZTjC3IrwDtWs2Mw2rmqZNVN/exec'; // GANTI DENGAN URL APPS SCRIPT ANDA
+        const form = document.getElementById('student-form');
+        const progressBar = document.getElementById('progress-bar');
+
+        function nextStep(step) {
+            const container = document.getElementById(`step-${step}`);
+            const inputs = container.querySelectorAll('input[required]');
+            
+            let valid = true;
+            inputs.forEach(input => {
+                if (input.type === 'radio') {
+                    const name = input.name;
+                    if (!container.querySelector(`input[name="${name}"]:checked`)) valid = false;
+                } else {
+                    if (!input.value.trim()) valid = false;
+                }
+            });
+
+            if (valid) {
+                document.getElementById(`step-${step}`).classList.remove('active');
+                document.getElementById(`step-${step + 1}`).classList.add('active');
+                
+                // Update Progress Bar (5 Steps)
+                const progress = (step / 5) * 100;
+                progressBar.style.width = progress + '%';
+            } else {
+                alert("Harap isi semua bagian sebelum lanjut!");
+            }
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerText = "Sabar, lagi mengirim...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    progressBar.style.width = '100%';
+                    form.style.display = 'none';
+                    document.getElementById('success-msg').style.display = 'block';
+                })
+                .catch(error => {
+                    alert('Gagal mengirim! Cek internetmu.');
+                    btn.disabled = false;
+                    btn.innerText = "Coba Kirim Lagi";
+                });
+        });
+    </script>
 </body>
 </html>
