@@ -4,148 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exit Ticket: Diagram Pencar</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #007bff;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+
+        #form-container {
+            width: 90%; max-width: 600px;
+            background: white; padding: 30px;
+            border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        #progress-bar {
+            position: absolute; top: 0; left: 0;
+            height: 6px; background: var(--primary);
+            width: 0%; transition: 0.4s; border-radius: 20px 20px 0 0;
+        }
+
+        .step { display: none; animation: fadeIn 0.4s ease; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-size: 1.5rem; margin-bottom: 10px; }
+        h2 { font-size: 1.1rem; line-height: 1.5; color: #444; }
+        .step-info { font-size: 0.8rem; color: #888; font-weight: bold; margin-bottom: 10px; display: block; }
+
+        /* Input Styling */
+        input[type="text"] {
+            width: 100%; padding: 12px 0; border: none;
+            border-bottom: 2px solid #ddd; font-size: 1.2rem;
+            outline: none; transition: 0.3s; margin: 20px 0;
+        }
+        input[type="text"]:focus { border-bottom-color: var(--primary); }
+
+        /* Radio Options */
+        .options { margin: 20px 0; }
+        .radio-opt {
+            display: flex; align-items: center;
+            background: #fff; border: 1px solid #eee;
+            padding: 12px; margin-bottom: 10px;
+            border-radius: 10px; cursor: pointer; transition: 0.2s;
+        }
+        .radio-opt:hover { background: #f0f7ff; border-color: var(--primary); }
+        .radio-opt input { margin-right: 12px; transform: scale(1.2); }
+
+        /* Table Style (Sesuai Gambar) */
+        .table-container { width: 100%; overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #f9f9f9; }
+        td:first-child { text-align: left; width: 40%; font-weight: 500; }
+        .emoji-label { font-size: 1.2rem; display: block; }
+
+        button {
+            width: 100%; padding: 14px; border: none;
+            border-radius: 10px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-next { background: var(--primary); color: white; }
+        .btn-submit { background: #28a745; color: white; }
+
+        #success-msg { text-align: center; padding: 40px 0; display: none; }
+    </style>
 </head>
 <body>
 
-    <div id="form-container">
-        <div id="progress-bar"></div>
-
-        <form id="student-form">
-            <div class="step active" id="step-1">
-                <span class="step-number">Bagian 1/5</span>
-                <h1>Halo! Tulis namamu dulu ya.</h1>
-                <p class="instruction">Gunakan nama lengkap sesuai absen.</p>
-                <input type="text" name="nama" placeholder="Ketik namamu di sini..." required>
-                <button type="button" class="btn-next" onclick="nextStep(1)">Mulai Kuis</button>
-            </div>
-
-            <div class="step" id="step-2">
-                <span class="step-number">Bagian 2/5</span>
-                <p class="context">Soal 1: Tren Data</p>
-                <h2>Grafik menurun dari kiri atas ke kanan bawah. Arah tren data tersebut adalah...</h2>
-                <div class="options">
-                    <label class="radio-opt"><input type="radio" name="soal1" value="A" required> <span>A. Linear Positif</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal1" value="B"> <span>B. Linear Negatif</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal1" value="C"> <span>C. Tidak ada korelasi</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal1" value="D"> <span>D. Non-linear</span></label>
-                </div>
-                <button type="button" class="btn-next" onclick="nextStep(2)">Lanjut</button>
-            </div>
-
-            <div class="step" id="step-3">
-                <span class="step-number">Bagian 3/5</span>
-                <p class="context">Soal 2: Garis Tren</p>
-                <h2>Tujuan utama menarik "Garis Tren" lurus pada diagram pencar adalah untuk...</h2>
-                <div class="options">
-                    <label class="radio-opt"><input type="radio" name="soal2" value="A" required> <span>A. Membuat titik terlihat rapi</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal2" value="B"> <span>B. Menghubungkan titik awal & akhir</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal2" value="C"> <span>C. Memprediksi nilai yang belum terjadi</span></label>
-                    <label class="radio-opt"><input type="radio" name="soal2" value="D"> <span>D. Menghitung total data</span></label>
-                </div>
-                <button type="button" class="btn-next" onclick="nextStep(3)">Lanjut</button>
-            </div>
-
-            <div class="step" id="step-4">
-                <span class="step-number">Bagian 4/5</span>
-                <p class="context">Soal 3: Isian Singkat</p>
-                <h2>Jika titik menyebar acak dan berantakan tanpa membentuk garis, apa kesimpulanmu?</h2>
-                <input type="text" name="soal3" placeholder="Ketik jawabanmu..." required>
-                <button type="button" class="btn-next" onclick="nextStep(4)">Lanjut ke Refleksi</button>
-            </div>
-
-            <div class="step" id="step-5">
-                <span class="step-number">Bagian 5/5</span>
-                <h1>Refleksi Pembelajaran</h1>
-                <p class="instruction">Sejauh mana kamu paham materi hari ini?</p>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Pernyataan</th>
-                                <th>🤩 Paham</th>
-                                <th>🤔 Bingung</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Menentukan arah tren grafik</td>
-                                <td><input type="radio" name="refleksi1" value="Paham" required></td>
-                                <td><input type="radio" name="refleksi1" value="Bingung"></td>
-                            </tr>
-                            <tr>
-                                <td>Menggambar garis tren digital</td>
-                                <td><input type="radio" name="refleksi2" value="Paham" required></td>
-                                <td><input type="radio" name="refleksi2" value="Bingung"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h2>Hal yang paling menantang bagi saya adalah...</h2>
-                <input type="text" name="tantangan" placeholder="Ceritakan kesulitanmu..." required>
-                
-                <button type="submit" id="submit-btn" class="btn-submit">Kirim Semua Jawaban</button>
-            </div>
-        </form>
-
-        <div id="success-msg" style="display:none;">
-            <div class="icon-success">🎉</div>
-            <h1>Terima Kasih!</h1>
-            <p>Jawabanmu sudah berhasil terkirim ke Bapak/Ibu Guru.</p>
+<div id="form-container">
+    <div id="progress-bar"></div>
+    
+    <form id="student-form">
+        <div class="step active" id="step-1">
+            <span class="step-info">BAGIAN 1/5</span>
+            <h1>Selamat Datang!</h1>
+            <p>Silakan tulis nama lengkapmu untuk memulai kuis.</p>
+            <input type="text" name="nama" placeholder="Nama Lengkap..." required>
+            <button type="button" class="btn-next" onclick="nextStep(1)">Mulai</button>
         </div>
-    </div>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzzDDMd6MQBhanvNISIw1elLXOyngTT8NKjSTxJFtEEFZTjC3IrwDtWs2Mw2rmqZNVN/exec'; // GANTI DENGAN URL APPS SCRIPT ANDA
-        const form = document.getElementById('student-form');
-        const progressBar = document.getElementById('progress-bar');
+        <div class="step" id="step-2">
+            <span class="step-info">BAGIAN 2/5</span>
+            <h2>Soal 1: Grafik menurun dari kiri atas ke kanan bawah. Arah tren data tersebut adalah...</h2>
+            <div class="options">
+                <label class="radio-opt"><input type="radio" name="soal1" value="Linear Positif" required> Linear Positif</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="Linear Negatif"> Linear Negatif</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="Tidak ada korelasi"> Tidak ada korelasi</label>
+                <label class="radio-opt"><input type="radio" name="soal1" value="Non-linear"> Non-linear</label>
+            </div>
+            <button type="button" class="btn-next" onclick="nextStep(2)">Lanjut</button>
+        </div>
 
-        function nextStep(step) {
-            const container = document.getElementById(`step-${step}`);
-            const inputs = container.querySelectorAll('input[required]');
+        <div class="step" id="step-3">
+            <span class="step-info">BAGIAN 3/5</span>
+            <h2>Soal 2: Tujuan utama menarik "Garis Tren" lurus pada diagram pencar adalah untuk...</h2>
+            <div class="options">
+                <label class="radio-opt"><input type="radio" name="soal2" value="Merapikan titik" required> Membuat titik terlihat lebih rapi</label>
+                <label class="radio-opt"><input type="radio" name="soal2" value="Hubung titik awal-akhir"> Menghubungkan titik pertama & terakhir</label>
+                <label class="radio-opt"><input type="radio" name="soal2" value="Prediksi"> Melihat pola umum untuk prediksi</label>
+            </div>
+            <button type="button" class="btn-next" onclick="nextStep(3)">Lanjut</button>
+        </div>
+
+        <div class="step" id="step-4">
+            <span class="step-info">BAGIAN 4/5</span>
+            <h2>Soal 3: Jika titik menyebar acak dan berantakan tanpa membentuk garis, apa kesimpulanmu?</h2>
+            <input type="text" name="soal3" placeholder="Ketik jawabanmu..." required>
+            <button type="button" class="btn-next" onclick="nextStep(4)">Lanjut ke Penilaian Diri</button>
+        </div>
+
+        <div class="step" id="step-5">
+            <span class="step-info">BAGIAN 5/5</span>
+            <h1>Tabel Refleksi Diri</h1>
+            <p style="font-size: 0.85rem; color: #666;">Berilah tanda centang pada kolom perasaan yang paling sesuai!</p>
             
-            let valid = true;
-            inputs.forEach(input => {
-                if (input.type === 'radio') {
-                    const name = input.name;
-                    if (!container.querySelector(`input[name="${name}"]:checked`)) valid = false;
-                } else {
-                    if (!input.value.trim()) valid = false;
-                }
-            });
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Pernyataan Pencapaian</th>
+                        <th><span class="emoji-label">🤩</span> Sangat Paham</th>
+                        <th><span class="emoji-label">🧐</span> Lumayan</th>
+                        <th><span class="emoji-label">🤓</span> Masih Bingung</th>
+                    </tr>
+                    <tr>
+                        <td>Menentukan arah tren (positif/negatif)</td>
+                        <td><input type="radio" name="ref_tren" value="Sangat Paham" required></td>
+                        <td><input type="radio" name="ref_tren" value="Lumayan"></td>
+                        <td><input type="radio" name="ref_tren" value="Bingung"></td>
+                    </tr>
+                    <tr>
+                        <td>Menyusun kalimat interpretasi grafik</td>
+                        <td><input type="radio" name="ref_interp" value="Sangat Paham" required></td>
+                        <td><input type="radio" name="ref_interp" value="Lumayan"></td>
+                        <td><input type="radio" name="ref_interp" value="Bingung"></td>
+                    </tr>
+                    <tr>
+                        <td>Paham gunanya diagram pencar untuk prediksi</td>
+                        <td><input type="radio" name="ref_prediksi" value="Sangat Paham" required></td>
+                        <td><input type="radio" name="ref_prediksi" value="Lumayan"></td>
+                        <td><input type="radio" name="ref_prediksi" value="Bingung"></td>
+                    </tr>
+                </table>
+            </div>
+            <button type="submit" id="submit-btn" class="btn-submit">Kirim Jawaban</button>
+        </div>
+    </form>
 
-            if (valid) {
-                document.getElementById(`step-${step}`).classList.remove('active');
-                document.getElementById(`step-${step + 1}`).classList.add('active');
-                
-                // Update Progress Bar (5 Steps)
-                const progress = (step / 5) * 100;
-                progressBar.style.width = progress + '%';
+    <div id="success-msg">
+        <h1 style="font-size: 3rem;">🎉</h1>
+        <h1>Selesai!</h1>
+        <p>Jawabanmu sudah terkirim ke Google Sheets.</p>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwaYy-Oi5Vmu8q7YjaH74kEiwdNjPxn3WQKvFIeyrdQZDB28iJp2GkNBM3MKhgmTmUO/exec'; // GANTI DENGAN URL APPS SCRIPT ANDA
+    const form = document.getElementById('student-form');
+
+    function nextStep(step) {
+        const current = document.getElementById(`step-${step}`);
+        const inputs = current.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (input.type === 'radio') {
+                const name = input.name;
+                if (!current.querySelector(`input[name="${name}"]:checked`)) valid = false;
             } else {
-                alert("Harap isi semua bagian sebelum lanjut!");
+                if (!input.value.trim()) valid = false;
             }
-        }
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerText = "Sabar, lagi mengirim...";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    progressBar.style.width = '100%';
-                    form.style.display = 'none';
-                    document.getElementById('success-msg').style.display = 'block';
-                })
-                .catch(error => {
-                    alert('Gagal mengirim! Cek internetmu.');
-                    btn.disabled = false;
-                    btn.innerText = "Coba Kirim Lagi";
-                });
         });
-    </script>
+
+        if (valid) {
+            current.classList.remove('active');
+            document.getElementById(`step-${step + 1}`).classList.add('active');
+            document.getElementById('progress-bar').style.width = (step / 5 * 100) + '%';
+        } else {
+            alert("Harap isi/pilih jawabanmu dulu ya!");
+        }
+    }
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        btn.disabled = true;
+        btn.innerText = "Sedang Mengirim...";
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                document.getElementById('progress-bar').style.width = '100%';
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            })
+            .catch(error => {
+                alert('Gagal kirim! Periksa internetmu.');
+                btn.disabled = false;
+                btn.innerText = "Kirim Jawaban";
+            });
+    });
+</script>
+
 </body>
 </html>
